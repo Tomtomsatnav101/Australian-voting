@@ -20,25 +20,29 @@ Module Module1
                 Dim current As Integer = contents(i, 1)
                 total(current) += 1
 
+                Console.WriteLine(total(current).ToString)
             Next
 
         End Function
 
         Public Function largest()
-            Dim totalcurrent As Integer
-            For i As Integer = 1 To voterno
-                totalcurrent += total(i)
-            Next
+            Dim totalcurrent As Integer = voterno
+            smallest = voterno
+
             For i As Integer = 1 To voterno
                 If total(i) / totalcurrent >= 0.5 Then
                     bigiftrue = True
                     largest = i
-                    If total(i) < smallest Then
-                        smallest = total(i)
-                        wastedvote = i
-                    End If
-                End If
 
+                End If
+                If total(i) < smallest Then
+                    Console.WriteLine("Runnign smallest")
+                    Console.WriteLine("total(i) = " + total(i).ToString)
+                    Console.WriteLine("smallest = " + smallest.ToString)
+                    Console.ReadLine()
+                    smallest = total(i)
+                    wastedvote = i
+                End If
             Next
 
 
@@ -52,7 +56,7 @@ Module Module1
 
     Dim voterno As Integer
     Dim counter As Integer = 0
-    Dim total() As Integer
+    Dim total(1000) As Integer
     Dim largest As Integer
     Dim round As Integer
     Dim bigiftrue As Boolean
@@ -89,7 +93,7 @@ Module Module1
         Do While bigiftrue = False
             voters.largest()
             If bigiftrue = True Then
-
+                Console.WriteLine("Bigiftrue")
             Else
                 For i As Integer = 1 To voterno
                     voters.contents(wastedvote, i) = voters.contents(wastedvote, i + 1)
